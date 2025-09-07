@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 
 import { Box, Newline, Text } from "ink";
 import { marked } from "marked";
@@ -31,7 +31,7 @@ export function slack2Ink({ blocks }: { blocks: KnownBlock[] }) {
   return () => Slack({ children: blocks });
 }
 
-export function convertBlock(key: string, block: KnownBlock): JSX.Element {
+export function convertBlock(key: string, block: KnownBlock): React.JSX.Element {
   switch (block.type) {
     case "actions":
       return (
@@ -76,6 +76,8 @@ export function convertBlock(key: string, block: KnownBlock): JSX.Element {
       );
     case "video":
       return <Text key={key}>(video block is not yet supported)</Text>;
+    case "markdown":
+      return <Text key={key}>(markdown block is not yet supported)</Text>;
     default:
       const never: never = block;
       throw new Error(`unknown block type: ${never}`);
@@ -85,7 +87,7 @@ export function convertBlock(key: string, block: KnownBlock): JSX.Element {
 export function convertActionElement(
   key: string,
   element: Flatten<ActionsBlock["elements"]> | SectionBlock["accessory"],
-): JSX.Element | undefined {
+): React.JSX.Element | undefined {
   if (typeof element === "undefined") return undefined;
 
   // check image_url just to omit Action in types
@@ -94,7 +96,7 @@ export function convertActionElement(
   return <Text key={key}>(actions are not yet supported)</Text>;
 }
 
-export function convertFields(key: string, fields: SectionBlock["fields"]): JSX.Element | undefined {
+export function convertFields(key: string, fields: SectionBlock["fields"]): React.JSX.Element | undefined {
   if (typeof fields === "undefined") return;
 
   return (
@@ -109,7 +111,7 @@ export function convertFields(key: string, fields: SectionBlock["fields"]): JSX.
 export function convertElement(
   key: string,
   element: Flatten<ContextBlock["elements"]> | SectionBlock["text"],
-): JSX.Element | undefined {
+): React.JSX.Element | undefined {
   if (typeof element === "undefined") return;
 
   switch (element.type) {
@@ -125,7 +127,7 @@ export function convertElement(
   }
 }
 
-export function convertRichText(key: string, element: Flatten<RichTextBlock["elements"]>): JSX.Element {
+export function convertRichText(key: string, element: Flatten<RichTextBlock["elements"]>): React.JSX.Element {
   switch (element.type) {
     case "rich_text_list":
       return (
@@ -153,11 +155,11 @@ export function convertRichText(key: string, element: Flatten<RichTextBlock["ele
   }
 }
 
-export function convertRichTextSection(key: string, element: RichTextSection): JSX.Element[] {
+export function convertRichTextSection(key: string, element: RichTextSection): React.JSX.Element[] {
   return element.elements.map((e, i) => convertRichTextElement(`${key}-${i}`, e));
 }
 
-export function convertRichTextElement(key: string, element: RichTextElement): JSX.Element {
+export function convertRichTextElement(key: string, element: RichTextElement): React.JSX.Element {
   const text: string | undefined =
     element.type === "channel"
       ? `#${element.channel_id}`
@@ -180,11 +182,11 @@ export function convertRichTextElement(key: string, element: RichTextElement): J
   );
 }
 
-export function convertImage(key: string, element: ImageBlock | ImageElement): JSX.Element {
+export function convertImage(key: string, element: ImageBlock | ImageElement): React.JSX.Element {
   return <Text key={key}>(image is not yet supported)</Text>;
 }
 
-export function convertText(key: string, element: PlainTextElement | MrkdwnElement): JSX.Element {
+export function convertText(key: string, element: PlainTextElement | MrkdwnElement): React.JSX.Element {
   // XXX:https://github.com/markedjs/marked/pull/3116
   return element.type === "mrkdwn" ? (
     <Text key={key}>{marked(element.text.replace(/<(.+?)\|(.+?)>/g, (_, r1, r2) => `[${r2}](${r1})`)) as string}</Text>
