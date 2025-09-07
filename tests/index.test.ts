@@ -25,11 +25,11 @@ describe(slack2Ink, () => {
                    "_store": {},
                    "key": "blocks-0-section-text",
                    "props": {
-                     "children": "[0mEnjoy building blocks![0m
+                     "children": "Enjoy building blocks!
 
-     [0m> [3m[34mjsx-slack ([34m[4mhttps://github.com/yhatt/jsx-slack[24m[39m[34m)[39m[23m[0m
-     [0m> [3mBuild JSON for Slack Block Kit from JSX[23m[0m
-     [0m> [0m
+     > jsx-slack (https://github.com/yhatt/jsx-slack)
+     > Build JSON for Slack Block Kit from JSX
+     > 
 
      ",
                    },
@@ -63,7 +63,7 @@ describe(slack2Ink, () => {
                    "_store": {},
                    "key": "blocks-1-contexts-elements-0",
                    "props": {
-                     "children": "[0mMaintained by [34mYuki Hattori ([34m[4mhttps://github.com/yhatt[24m[39m[34m)[39m[0m
+                     "children": "Maintained by Yuki Hattori (https://github.com/yhatt)
 
      ",
                    },

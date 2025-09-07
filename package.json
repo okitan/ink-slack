@@ -9,6 +9,7 @@
     "build": "rm -rf lib && tsc --build tsconfig.build.json",
     "build:check": "tsc --noEmit",
     "test": "node --no-warnings --experimental-vm-modules node_modules/.bin/jest",
+    "test:update": "CI=1 node --no-warnings --experimental-vm-modules node_modules/.bin/jest --updateSnapshot",
     "exec": "node --loader=tsimp/loader"
   },
   "repository": {
