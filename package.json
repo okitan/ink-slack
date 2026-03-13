@@ -29,7 +29,7 @@
     "@swc/jest": "0.2.39",
     "@types/jest": "30.0.0",
     "@types/react": "19.2.14",
-    "jest": "30.2.0",
+    "jest": "30.3.0",
     "jsx-slack": "6.1.2",
     "prettier": "3.8.1",
     "tsimp": "2.0.12",
