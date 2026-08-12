@@ -33,7 +33,7 @@
     "jsx-slack": "6.1.2",
     "prettier": "3.9.6",
     "tsimp": "2.0.12",
-    "typescript": "5.9.3"
+    "typescript": "7.0.2"
   },
   "dependencies": {
     "marked-terminal": "^7.0.0"
